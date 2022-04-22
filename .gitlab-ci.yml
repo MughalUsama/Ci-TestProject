@@ -23,7 +23,7 @@ build-job:       # This job runs in the build stage, which runs first.
   script:
     - echo "Compiling the code..."
     - echo "Compile complete."
-    - 'testvar=$(curl --header "X-Vault-Token:$VAULT_TOKEN" --header "X-Vault-Namespace:admin" $VAULT_ADDR/v1/secret/data/test | jq -r ".data.data.foo")'
+    - 'testvar=$(curl --header "X-Vault-Token:$VAULT_TOKEN" --header "X-Vault-Namespace:admin" $VAULT_ADDR/v1/secret/data/test)'
     - echo "data here:"
     - echo $testvar
 
