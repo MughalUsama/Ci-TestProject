@@ -19,3 +19,4 @@ read_secrets:
     - DBPASSWORD="$(vault kv get -format=json secret/production/aws_key | jq '.data.data.pass')"
     # Use the secret
     - echo $DBPASSWORD
+    # end
