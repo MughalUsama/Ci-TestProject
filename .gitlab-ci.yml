@@ -7,11 +7,12 @@ read_secrets:
   script:
     # Check job's ref name
     - echo $CI_COMMIT_REF_NAME
+
     # Authenticate and get token. Token expiry time and other properties can be configured
-    
     - export VAULT_TOKEN="$(vault write -field=token auth/jwt/login role=$VAULT_ROLE jwt=$CI_JOB_JWT)"
-    # Now use the VAULT_TOKEN to read the secret and store it
+    # output token for testing 
     - echo $VAULT_TOKEN
+    # Now use the VAULT_TOKEN to read the secret and store it
     - AWSKEY="$(vault kv get -format=json secret/production | jq '.data.data.aws_key')"
     # Use the secret
     - echo $AWSKEY
